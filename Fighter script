@@ -33,7 +33,6 @@ public class Fighter : Collidable
 
     protected virtual void Hit()
     {
-        hit = true;
         gameObject.GetComponent<Charge>().StartCharging();
     }
 
