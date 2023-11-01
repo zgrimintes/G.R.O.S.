@@ -36,6 +36,11 @@ public class Fighter : Collidable
         gameObject.GetComponent<Charge>().StartCharging(); //Start corutine for charging from the Charging script
     }
 
+    public void canHit()
+    {
+        hit = true;
+    }
+
     protected override void OnCollide(Collider2D coll)
     {
         if (coll.tag == "Fighter" && hit) //Get hit only if the target is a fighter
