@@ -51,7 +51,7 @@ public class Charge : MonoBehaviour
         Vector3 returnPos = startPosition - dir * endTime;
         if (endTime > 0.2f)
         {
-            while (transform.position != returnPos || time > 1)
+            while (transform.position != returnPos && time < 1)
             { 
                 transform.position = Vector3.Lerp(midChargePos, returnPos, (time * endTime * 10) / duration);;
                 time += Time.deltaTime;
