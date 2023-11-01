@@ -18,7 +18,7 @@ public class Charge : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            endTime = Time.time - startTime;
+            endTime = Time.time - startTime; //I'm counting for how long is the space bar pressed
             if (endTime > 1)
             {
                 endTime = 1;  
@@ -28,8 +28,8 @@ public class Charge : MonoBehaviour
 
     public void StartCharging()
     {
-        dir = gameObject.GetComponent<Walking>().direction * 2;
-        positionToMove = gameObject.transform.position + dir;
+        dir = gameObject.GetComponent<Walking>().direction * 2; //Here I am using the dir from the walking script
+        positionToMove = gameObject.transform.position + dir;   //and using it I'm setting in which direction the character will charge
         StartCoroutine(Charging(positionToMove, 0.4f));
     }
 
