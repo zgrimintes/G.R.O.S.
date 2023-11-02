@@ -19,7 +19,7 @@ public class Walking : MonoBehaviour
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");
 
-            direction = ((Vector2)transform.position - mousePos).normalized;
+            direction = ((Vector2)transform.position - mousePos).normalized; //Direction for the charge animation
             gameObject.transform.position += new Vector3(horizontal, vertical, 0) * Time.deltaTime * speed;
         }
 
