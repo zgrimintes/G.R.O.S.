@@ -14,8 +14,8 @@ public class Walking : MonoBehaviour
         if (canLook)
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.up = mousePos - new Vector2(transform.position.x, transform.position.y);
-
+            transform.up = mousePos - new Vector2(transform.position.x, transform.position.y); //The character is rotating after de cursor
+ 
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");
 
