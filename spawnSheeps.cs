@@ -24,7 +24,11 @@ public class spawnSheeps : MonoBehaviour
         {
             NextSheep = Time.time + Cooldown;
             GameObject newSheep = Instantiate(sheeps, sheepSpawner.transform.position, Quaternion.identity); //I'm creating a new GameObject so i can change the script on it
-            newSheep.AddComponent<Roam>();
+            
+            if (newSheep.GetComponent<Roam>())
+                newSheep.AddComponent<Roam>();
+
+            newSheep.tag = "Fighter";
         }
     }
 }

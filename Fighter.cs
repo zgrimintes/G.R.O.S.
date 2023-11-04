@@ -35,9 +35,9 @@ public class Fighter : Collidable
         gameObject.GetComponent<Charge>().StartCharging();
     }
 
-    public void canHit()
+    public void canHit(bool IO)
     {
-        hit = true;
+        hit = IO;
     }
 
     protected override void OnCollide(Collider2D coll)

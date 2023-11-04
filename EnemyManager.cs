@@ -14,6 +14,7 @@ public class EnemyManager : MonoBehaviour
         {
             GameObject fltxt = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity); //I'm istantiating the text prefab in the location of the enemy
             fltxt.GetComponentInChildren<TextMeshProUGUI>().text = Text;
+            fltxt.GetComponentInChildren<TextMeshProUGUI>().color = Color.red;
             Destroy(fltxt, SecondsToDestroy);
         }
     }

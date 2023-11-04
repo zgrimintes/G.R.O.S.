@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Health : Collidable
 {
-    public int health;
-    public int maxHp;
+    public float health;
+    public float maxHp;
 
     protected override void Start()
     {
-        base.Start();
         health = maxHp;
     }
 
     protected void TakeDmg(int dmg)
     {
-        if (health > 0) {
+        GetComponent<EnemyManager>().showText(dmg.ToString());
+        if (health - dmg > 0) {
             health -= dmg;
         }
         else

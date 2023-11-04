@@ -45,11 +45,11 @@ public class Charge : MonoBehaviour
             yield return null;
         }
         
-        GetComponent<Fighter>().canHit();
+        GetComponent<Fighter>().canHit(true); //Make it so the goat can hit
 
         time = 0;
         Vector3 midChargePos = transform.position;
-        Vector3 returnPos = startPosition - dir * endTime;
+        Vector3 returnPos = startPosition - dir * endTime * 2;
         if (endTime > 0.2f)
         {
             while (transform.position != returnPos && time < 1)
@@ -70,5 +70,7 @@ public class Charge : MonoBehaviour
             }
         }
         gameObject.GetComponent<Walking>().canLook = true;
+
+        GetComponent<Fighter>().canHit(false); //Make it so the goat can't hit
     }
 }
