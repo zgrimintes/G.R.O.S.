@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class Fighter : Collidable
 {
-    public int dmg = 1;
+    public Damage damage;
     public float ImmuneTime;
     protected float lastImmune;
 
@@ -35,9 +35,12 @@ public class Fighter : Collidable
         gameObject.GetComponent<Charge>().StartCharging();
     }
 
-    public void canHit(bool IO)
+    public void canHit(bool IO, float dmg)
     {
+        damage.setBonus(dmg);//Sets a dmg bonus based on the time the player had charged
         hit = IO;
+        damage.dmg = dmg * damage.dmgBonus;
+        damage.dmg = (int)(damage.dmg * 10f) / 10f;
     }
 
     protected override void OnCollide(Collider2D coll)
@@ -47,7 +50,7 @@ public class Fighter : Collidable
             {
                 lastImmune = Time.time;
                 //send dmg message
-                coll.SendMessage("TakeDmg", dmg);
+                coll.SendMessage("TakeDmg", damage.dmg);
                 hit = false;
             }
     }
