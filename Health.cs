@@ -12,7 +12,7 @@ public class Health : Collidable
         health = maxHp;
     }
 
-    protected void TakeDmg(int dmg)
+    protected void TakeDmg(float dmg)
     {
         GetComponent<EnemyManager>().showText(dmg.ToString());
         if (health - dmg > 0) {
