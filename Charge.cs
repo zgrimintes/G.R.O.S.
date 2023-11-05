@@ -8,6 +8,7 @@ public class Charge : MonoBehaviour
     private Vector3 dir;
     private float startTime = 0f;
     public float endTime = 0f;
+    private float dmg;
 
     public void Update()
     {
@@ -31,7 +32,7 @@ public class Charge : MonoBehaviour
         gameObject.GetComponent<Walking>().canLook = false; //Make so the player can't rotate while they are charging
         dir = gameObject.GetComponent<Walking>().direction * 2; //Here I am using the dir from the walking script
         positionToMove = gameObject.transform.position + dir;   //and using it I'm setting in which direction the character will charge
-        StartCoroutine(Charging(positionToMove, 0.4f));
+        StartCoroutine(Charging(positionToMove, 0.6f));
     }
 
     IEnumerator Charging(Vector3 targetPosition, float duration)
@@ -44,8 +45,9 @@ public class Charge : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
-        
-        GetComponent<Fighter>().canHit(true); //Make it so the goat can hit
+
+        dmg = 1 * (endTime + 0.5f * endTime * 2); //Scale the damage with the time the player charged
+        GetComponent<Fighter>().canHit(true, dmg); //Make it so the goat can hit
 
         time = 0;
         Vector3 midChargePos = transform.position;
@@ -71,6 +73,6 @@ public class Charge : MonoBehaviour
         }
         gameObject.GetComponent<Walking>().canLook = true;
 
-        GetComponent<Fighter>().canHit(false); //Make it so the goat can't hit
+        GetComponent<Fighter>().canHit(false, dmg); //Make it so the goat can't hit
     }
 }
