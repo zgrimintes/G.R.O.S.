@@ -11,7 +11,6 @@ public class Walking : Collidable
     public Vector3 movement;
     public float speed;
     public bool canLook = true;
-    public bool canMove = true;
 
     protected override void Start()
     {
@@ -33,15 +32,20 @@ public class Walking : Collidable
             float vertical = Input.GetAxisRaw("Vertical");
 
             movement = new Vector3 { x = horizontal, y = vertical };
-            direction = ((Vector2)transform.position - mousePos).normalized;
+            direction = ((Vector2)transform.position - mousePos).normalized;      
         }
     }
 
     private void FixedUpdate()
     {
-        if (canMove)
+        rb.velocity = movement * speed;
+    }
+
+    protected override void OnCollide(Collider2D coll)
+    {
+        if (coll.tag == "Fence")
         {
-            rb.velocity = movement * speed;
+
         }
     }
 
