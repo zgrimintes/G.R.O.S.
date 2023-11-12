@@ -1,12 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Walking : Collidable
 {
+    Rigidbody2D rb;
+    Vector2 mousePos;
     public Vector3 direction;
+    public Vector3 movement;
     public float speed;
     public bool canLook = true;
+    public bool canMove = true;
+
+    protected override void Start()
+    {
+        base.Start();
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     // Update is called once per frame
     protected override void Update()
@@ -15,24 +26,23 @@ public class Walking : Collidable
 
         if (canLook)
         {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.up = mousePos - new Vector2(transform.position.x, transform.position.y);
 
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");
 
+            movement = new Vector3 { x = horizontal, y = vertical };
             direction = ((Vector2)transform.position - mousePos).normalized;
-            gameObject.transform.position += new Vector3(horizontal, vertical, 0) * Time.deltaTime * speed;
         }
-
     }
 
-    protected override void OnCollide(Collider2D coll)
+    private void FixedUpdate()
     {
-        if (coll.tag == "Fence")
+        if (canMove)
         {
-            //transform.position = Vector3.Reflect(gameObject.transform.position ,Vector3.right);
-            //Debug.Log("fence!");
+            rb.velocity = movement * speed;
         }
     }
+
 }
