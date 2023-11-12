@@ -53,7 +53,7 @@ public class Roam : MonoBehaviour
         yield return null;
     }
 
-    private bool canGo(Vector3 destination) //This verifies if the position the goats are trying to go to is valid
+    private bool canGo(Vector3 destination) //This verifies if the position the sheeps are trying to go to is valid
     {
         if (m_Colider.bounds.Contains(destination))
             return false;
