@@ -23,17 +23,17 @@ public class Walking : Collidable
     {
         base.Update();
 
-        if (canLook)
-        {
-            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.up = mousePos - new Vector2(transform.position.x, transform.position.y);
+        if (!canLook) //Stops if it cant move
+            return;
 
-            float horizontal = Input.GetAxisRaw("Horizontal");
-            float vertical = Input.GetAxisRaw("Vertical");
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.up = mousePos - new Vector2(transform.position.x, transform.position.y);
 
-            movement = new Vector3 { x = horizontal, y = vertical };
-            direction = ((Vector2)transform.position - mousePos).normalized;      
-        }
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+
+        movement = new Vector3 { x = horizontal, y = vertical };
+        direction = ((Vector2)transform.position - mousePos).normalized;
     }
 
     private void FixedUpdate()
@@ -45,7 +45,7 @@ public class Walking : Collidable
     {
         if (coll.tag == "Fence")
         {
-
+            GetComponent<Charge>().hitFence = true;
         }
     }
 
