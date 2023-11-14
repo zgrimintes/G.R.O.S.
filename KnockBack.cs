@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class KnockBack : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private float strenght, delay = 0.16f;
+    [SerializeField] private float resistance, delay = 0.16f;
 
     public UnityEvent OnBegin, OnEnd; //Two events for stopping the modification of the velocity across the gameObject
 
@@ -17,10 +17,15 @@ public class KnockBack : MonoBehaviour
 
     public void knockBack(GameObject sender)
     {
+        if (sender == null) return;
+
         StopAllCoroutines();
-        OnBegin.Invoke(); //Stop the velocity
+
+        OnBegin?.Invoke(); //Stop the velocity
+
         Vector2 direction = (transform.position - sender.transform.position).normalized;
-        rb.AddForce(direction * strenght, ForceMode2D.Impulse);
+        rb.AddForce(direction * resistance, ForceMode2D.Impulse);
+
         StartCoroutine(Reset());
     }
 
@@ -29,7 +34,7 @@ public class KnockBack : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         rb.velocity = Vector3.zero;
-        OnEnd.Invoke(); //Enable the velocity
+        OnEnd?.Invoke(); //Enable the velocity
     }
 
 }
