@@ -38,7 +38,7 @@ public class Charge : MonoBehaviour
         if (hitFence) //Stop coroutines and reset the booleans if during the charging the goat touches the fence
         {
             StopAllCoroutines();
-            GetComponent<Walking>().canLook = true;
+            CanLook(true);
             GetComponent<Fighter>().canHit(false, dmg);
             hitFence = false;
         }
@@ -46,7 +46,7 @@ public class Charge : MonoBehaviour
 
     public void StartCharging()
     {
-        gameObject.GetComponent<Walking>().canLook = false; //Make so the player can't rotate while they are charging
+        CanLook(false); //Make so the player can't rotate while they are charging
         dir = gameObject.GetComponent<Walking>().direction * 2; //Here I am using the dir from the walking script
         positionToMove = gameObject.transform.position + dir;   //and using it I'm setting in which direction the character will charge
         StartCoroutine(Charging(positionToMove, chargeTime));
@@ -89,8 +89,13 @@ public class Charge : MonoBehaviour
                 yield return null;
             }
         }
-        gameObject.GetComponent<Walking>().canLook = true;
+        CanLook(true);
 
         GetComponent<Fighter>().canHit(false, dmg); //Make it so the goat can't hit
+    }
+
+    public void CanLook(bool IO)
+    {
+        gameObject.GetComponent<Walking>().canLook = IO;
     }
 }
