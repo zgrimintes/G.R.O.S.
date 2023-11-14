@@ -45,12 +45,13 @@ public class Fighter : Collidable
 
     protected override void OnCollide(Collider2D coll)
     {
-        if (coll.tag == "Fighter" && hit) 
+        if (coll.tag == "Fighter" && hit)
             if (Time.time - lastImmune > ImmuneTime)
             {
                 lastImmune = Time.time;
-                //send dmg message
-                coll.SendMessage("TakeDmg", damage.dmg);
+                coll.SendMessage("TakeDmg", damage.dmg); //send dmg message
+                coll.SendMessage("knockBack", gameObject); //Calls the knonkback methon on the enemy
+                GetComponent<KnockBack>().knockBack(coll.gameObject); //Calls the knockback method inside the goat
                 hit = false;
             }
     }
