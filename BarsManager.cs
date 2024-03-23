@@ -20,22 +20,11 @@ public class BarsManager : MonoBehaviour
         healthBarSlider.value = value;
     }
 
-    private void getParentRotation()
-    {
-        Quaternion parentRot = gameObject.GetComponentInParent<Transform>().rotation = Quaternion.identity;
-
-        posCos = Mathf.Cos(parentRot.z);
-        posSin = Mathf.Sin(parentRot.z);
-
-        Debug.Log(parentRot.z);
-    }
-
     private void Update()
     {
-        getParentRotation();
-
         transform.rotation = Quaternion.identity;
-        //transform.localPosition = new Vector3(0, -posSin, 0);
+        transform.position = GetComponentInParent<Transform>().position - new Vector3(0, 1, 0);
+
         Debug.Log(posSin);
     }
 }
