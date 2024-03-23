@@ -23,8 +23,6 @@ public class BarsManager : MonoBehaviour
     private void Update()
     {
         transform.rotation = Quaternion.identity;
-        transform.position = GetComponentInParent<Transform>().position - new Vector3(0, 1, 0);
-
-        Debug.Log(posSin);
+        transform.position = GetComponentInParent<Transform>().position;
     }
 }
