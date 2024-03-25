@@ -29,6 +29,7 @@ public class spawnSheeps : MonoBehaviour
             newSheep_HP.GetComponent<BarsManager>().parent = newSheep;
             newSheep.tag = "Fighter";
             newSheep.GetComponent<Health>().hp_bar = newSheep_HP;
+            newSheep_HP.GetComponent<BarsManager>().setMaxValue(sheeps.GetComponent<Health>().maxHp);
         }
     }
 }
