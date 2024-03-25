@@ -20,6 +20,7 @@ public class Health : Collidable
         if (health - dmg > 0)
         {
             health -= dmg;
+            hp_bar.GetComponent<BarsManager>().setValue(health);
         }
         else
         {
