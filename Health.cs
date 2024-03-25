@@ -7,6 +7,8 @@ public class Health : Collidable
     public float health;
     public float maxHp;
 
+    public GameObject hp_bar;
+
     protected override void Start()
     {
         health = maxHp;
@@ -15,7 +17,8 @@ public class Health : Collidable
     protected void TakeDmg(float dmg)
     {
         GetComponent<EnemyManager>().showText(dmg.ToString());
-        if (health - dmg > 0) {
+        if (health - dmg > 0)
+        {
             health -= dmg;
         }
         else
@@ -27,5 +30,6 @@ public class Health : Collidable
     private void Death()
     {
         Destroy(gameObject);
+        Destroy(hp_bar);
     }
 }
