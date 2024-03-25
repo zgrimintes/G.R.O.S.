@@ -32,5 +32,7 @@ public class Health : Collidable
     {
         Destroy(gameObject);
         Destroy(hp_bar);
+
+        GameManager.instance.sheep_mod(-1); //Signal to the manager the subtraction of a sheep
     }
 }
