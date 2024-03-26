@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public static int sheep_count;
+    public static int sheep_count, sheep_killed;
 
     private void Start()
     {
