@@ -34,5 +34,6 @@ public class Health : Collidable
         Destroy(hp_bar);
 
         GameManager.instance.sheep_mod(-1); //Signal to the manager the subtraction of a sheep
+        GameManager.sheep_killed++; //Count the nb of killed sheeps
     }
 }
