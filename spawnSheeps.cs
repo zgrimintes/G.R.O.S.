@@ -21,7 +21,7 @@ public class spawnSheeps : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > NextSheep && GameManager.sheep_count < max_sheeps)
+        if (Time.time > NextSheep && GameManager.sheep_count < max_sheeps && GameManager.sheep_killed < 11)
         {
             GameManager.instance.sheep_mod(1); //Signal to the manager the addition of a sheep
 
@@ -33,6 +33,10 @@ public class spawnSheeps : MonoBehaviour
             newSheep.tag = "Fighter";
             newSheep.GetComponent<Health>().hp_bar = newSheep_HP;
             newSheep_HP.GetComponent<BarsManager>().setMaxValue(sheeps.GetComponent<Health>().maxHp);
+        }
+        else if (GameManager.sheep_killed > 10)
+        {
+            ///Logic for next sheep level
         }
     }
 }
